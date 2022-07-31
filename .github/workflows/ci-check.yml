@@ -18,7 +18,5 @@ jobs:
           node-version-file: ".tool-versions"
       - name: Install dependencies
         run: yarn install
-      - name: Check lint
-        run: yarn lint
-      - name: Check format
-        run: npx prettier -c .
+      - name: Check lint & formar
+        run: yarn check-code

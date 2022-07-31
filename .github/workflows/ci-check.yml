@@ -1,0 +1,24 @@
+name: CI Check
+
+on:
+  push:
+    branches: ["main", "dev"]
+  pull_request:
+    branches: ["main", "dev"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone the repo
+        uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: ".tool-versions"
+      - name: Install dependencies
+        run: yarn install
+      - name: Check lint
+        run: yarn lint
+      - name: Check format
+        run: npx prettier -c .
